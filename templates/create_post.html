@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Создать новый пост</h1>
+<form method="post" action="/posts/create/">
+    <div class="mb-3">
+        <label for="title" class="form-label">Заголовок</label>
+        <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Содержание</label>
+        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="user_id" class="form-label">Автор</label>
+        <select class="form-select" id="user_id" name="user_id" required>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Создать</button>
+    <a href="/posts/" class="btn btn-secondary">Отмена</a>
+</form>
+{% endblock %}
